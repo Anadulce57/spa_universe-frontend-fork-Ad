@@ -3,8 +3,8 @@
 
 body {
     background: var(--exploracao-bg);
-    background-position-y: bottom;
-    background-position-x: center;
+    background-position-y: bottom; /*/sets the initial vertical position for each background image. - canto/*/
+    background-position-x: center; /*/sets the initial horizontal position for each background image./*/
 }
 
 main {

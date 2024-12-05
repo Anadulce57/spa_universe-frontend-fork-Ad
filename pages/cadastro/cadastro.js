@@ -1,4 +1,4 @@
-function register() {
+async function register() {
     const name = document.querySelector("#name").value
     const email = document.querySelector("#email").value
     const password = document.querySelector("#password").value
@@ -21,6 +21,14 @@ function register() {
         email,
         password
     }
+    //enviar o objeto user para o back-end 
+    await fetch("https://3000-anadulce57-spauniversef-dffs2admu9z.ws-us117.gitpod.io/register",{
+        method: "POST",
+        headers: {
+            "Content-Type": "aplication/json"
+        },
+        body: JSON.stringify({ user })
+    })
 }
 
 const button = document.querySelector("form button")

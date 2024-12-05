@@ -21,3 +21,11 @@ app.post("/register", (request, response) =>{
 app.listen(3000, () => {
     console.log("Servidor rodando na porta 3000!")
 })
+
+const db = mysql.createPool({
+    connectionLimit: 10,
+    host: "sql10.freesqldatabase.com",
+    datbase: "sql10750023",
+    user: "sql10750023",
+    password: "y7bvnYfAa2"
+})

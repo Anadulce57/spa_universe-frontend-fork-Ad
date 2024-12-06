@@ -18,6 +18,37 @@ app.post("/register", (request, response) =>{
     const user = request.body.user
 
     console.log(user)
+
+    const searchCommand = `
+       SELECT * FROM Users
+       WHERE email = ? 
+    `
+
+    db.query(searchCommand, [user.email], (error, data) =>{
+        if(error) {
+            console.log(error)
+            return
+        }
+
+        if(data.length !== 0){
+            response.json({message: "Já existe um usuário cadastrado com esse e-mail. Tente outro e-mail", userExists: true})
+            return
+        }
+
+        const insertCommand = `
+            INSERT INTO User(name, email, password)
+            VALUES(?, ?, ?)
+        `
+
+        db.query(insertCommand, [user.name, user.email, user.password], (error) =>{
+            if(error) {
+                console.log(error)
+                return
+            }
+
+            response.json({ message: "Usuário cadastrado com sucesso!"})
+        })
+    })
 })
 
 app.listen(3000, () => {

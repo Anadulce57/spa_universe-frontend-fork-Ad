@@ -22,13 +22,22 @@ async function register() {
         password
     }
     //enviar o objeto user para o back-end 
-    await fetch("https://3000-anadulce57-spauniversef-dffs2admu9z.ws-us117.gitpod.io/register",{
+    const response = await fetch("https://3000-anadulce57-spauniversef-dffs2admu9z.ws-us117.gitpod.io/register",{
         method: "POST",
         headers: {
             "Content-Type": "aplication/json"
         },
         body: JSON.stringify({ user })
-    })
+    }).then(response => response.json())
+
+    alert(response.message)
+
+    if(response.userExists) {
+        window.location.reload()
+        return
+    }
+
+    window.location.href = "../login/login.html"
 }
 
 const button = document.querySelector("form button")
